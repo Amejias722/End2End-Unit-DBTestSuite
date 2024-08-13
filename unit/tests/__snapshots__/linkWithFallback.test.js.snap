@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LinkWithFallback > Renders plain text with no props 1`] = `<span>no link</span>`;

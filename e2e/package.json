@@ -1,0 +1,24 @@
+{
+  "name": "e2e-assessment",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "vite --host=0.0.0.0 --port=3000",
+    "postinstall": "playwright install",
+    "test": "playwright test --ui"
+  },
+  "dependencies": {
+    "vue": "^3.3.0",
+    "vue-select": "^4.0.0-beta.6",
+    "water.css": "^2.1.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "playwright": "^1.40.0",
+    "vite": "^5.2.0"
+  },
+  "volta": {
+    "node": "22.2.0"
+  }
+}

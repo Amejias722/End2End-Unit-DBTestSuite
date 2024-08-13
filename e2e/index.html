@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/public/favicon.ico" />
+    <title>E2E Assessment</title>
+    <style>
+      .center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <section>
+        <h1>E2E Assessment</h1>
+        <p data-qa="explanation">
+          This challenge assesses your skills at writing end-to-end tests.
+        </p>
+        <p>
+          <strong>See:</strong>
+          <code>assesment.test.js</code> for instructions.
+        </p>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Challenge 1</h2>
+
+        <button
+          v-if="!releases.length"
+          @click="getReleases"
+        >
+          Get releases
+        </button>
+        <div v-else>
+          <strong>Recent Vue Releases:</strong>
+          <ul>
+            <li
+              v-for="(release, releaseIndex) in releases"
+              :key="'release' + releaseIndex"
+            >
+              <a :href="release.html_url">
+                {{ release.tag_name }}
+              </a>
+              -
+              <time
+                v-if="release.published_at"
+                :datetime="release.published_at"
+              >
+                {{ (new Date(release.published_at)).toLocaleString() }}
+              </time>
+            </li>
+          </ul>
+        </div>
+
+        <p v-if="networkError">
+          <strong>
+            There was an error getting the data.
+          </strong>
+        </p>
+      </section>
+
+      <hr />
+
+      <section>
+        <h2>Challenge 2</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Enjoys</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(person, personIndex) in people"
+              :key="'person' + personIndex"
+            >
+              <td>{{ person.name }}</td>
+              <td>
+                <v-select
+                  :model-value="person.likes"
+                  :options="possibleInterests"
+                  @update:model-value="person.likes = $event"
+                ></v-select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="center">
+          <p v-if="thinking">
+            ...COMPUTING RESULT
+          </p>
+          <img
+            v-else-if="imageMap"
+            :alt="imageMap.alt"
+            :src="imageMap.url"
+            :title="imageMap.alt"
+          />
+        </div>
+        <button
+          @click="sendData"
+        >
+          Submit
+        </button>
+        <p v-if="submitError">
+          Error submitting, try again.
+        </p>
+      </section>
+    </div>
+
+    <script type="module">
+      import 'water.css/out/light.css';
+      import 'vue-select/dist/vue-select.css';
+
+      import { createApp } from 'vue';
+      import vSelect from 'vue-select'
+
+      const COWBOYS = 'cowboys';
+      const TURTLES = 'turtles';
+
+      const app = createApp({
+        components: {
+          vSelect
+        },
+        data: function () {
+          return {
+            networkError: false,
+            submitError: false,
+            releases: [],
+            people: [
+              {
+                name: 'Jonathon',
+                likes: null
+              },
+              {
+                name: 'Freddy',
+                likes: null
+              }
+            ],
+            possibleInterests: [
+              COWBOYS,
+              TURTLES
+            ],
+            thinking: false
+          }
+        },
+        methods: {
+          getReleases: async function () {
+            const url = 'https://api.github.com/repos/vuejs/vue-next/releases?per_page=3';
+            try {
+              this.networkError = false;
+              const response = await fetch(url);
+              const data = await response.json();
+              this.releases = data;
+            } catch {
+              this.networkError = true;
+            }
+          },
+          sendData: async function () {
+            this.submitError = false;
+            try {
+              // The backend isn't in place yet, so we are just hitting a fake endbpoint
+              const url = '/backend-stub';
+              const options = {
+                method: 'POST',
+                body: JSON.stringify(this.people)
+              };
+              const result = await fetch(url, options);
+              if (result.status > 299) {
+                throw 'Bad status';
+              }
+            } catch {
+              this.submitError = true;
+            }
+          }
+        },
+        computed: {
+          imageMap: function () {
+            const likes = this.people
+              .map((person) => {
+                return person.likes;
+              })
+              .filter(Boolean)
+              .sort();
+
+            const first = likes[0];
+            const second = likes[1];
+            const firstIsCowboy = first === COWBOYS;
+            const firstIsTurtle = first === TURTLES
+            const secondIsCowboy = second === COWBOYS;
+            const secondIsTurtle = second === TURTLES;
+
+            const doubleCowboy = firstIsCowboy && secondIsCowboy;
+            const doubltTurtle = firstIsTurtle && secondIsTurtle;
+            const cowboyTurtle = (
+              (firstIsCowboy && secondIsTurtle) ||
+              (firstIsTurtle && secondIsCowboy)
+            );
+
+            if (doubleCowboy) {
+              return {
+                alt: 'Double Cowboy!',
+                url: '/cowboy-cowboy.png'
+              };
+            }
+            if (doubltTurtle) {
+              return {
+                alt: 'Double Turtle!',
+                url: '/turtle-turtle.png'
+              };
+            }
+            if (cowboyTurtle) {
+              return {
+                alt: 'Cowboy Turtle!',
+                url: '/cowboy-turtle.png'
+              };
+            }
+            if (firstIsCowboy) {
+              return {
+                alt: 'Cowboy',
+                url: '/cowboy.png'
+              };
+            }
+            if (firstIsTurtle) {
+              return {
+                alt: 'Turtle',
+                url: '/turtle.png'
+              };
+            }
+            return undefined;
+          }
+        },
+        watch: {
+          imageMap: function () {
+            /**
+             * THE DELAY HERE IS IMPORTANT!
+             * We told our investors that we can use AI to figure out
+             * the turtle/cowboy thing. But none of us know how to do AI,
+             * so we are just making it look like this takes a long time.
+             * Then next quarter we can lower the delay and talk about how
+             * hard it was to make the AI go faster. Look, I know this goes
+             * against everything in the turtle/cowboy/ethics handbook, but
+             * my hands are tied on this.
+             */
+            this.thinking = true;
+            // 0.5-2 second random delay
+            const delay = (Math.random() * 1500) + 500;
+            setTimeout(() => {
+              this.thinking = false;
+            }, delay);
+          }
+        }
+      });
+      app.mount('#app');
+    </script>
+  </body>
+</html>

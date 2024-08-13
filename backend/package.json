@@ -1,0 +1,16 @@
+{
+  "name": "webdev-assessment-backend",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "challenge-1": "vitest -t \"CHALLENGE 1\"",
+    "challenge-2": "vitest -t \"CHALLENGE 2\""
+  },
+  "dependencies": {
+    "sqlite-async": "^1.2.0",
+    "vitest": "^1.6.0"
+  },
+  "volta": {
+    "node": "22.2.0"
+  }
+}
