@@ -20,9 +20,7 @@
  * The corresponding test in challenge.test.js should pass.
  */
 export const getBrandNames = async function (database) {
-  const query = `
-    select name as brand_name from brands order by id
-  `;
+  const query = ` select name as brand_name from brands order by id`;
 
   return await database.all(query);
 }
@@ -43,9 +41,11 @@ export const getBrandNames = async function (database) {
  * * See database schema above
  */
 export const getSuperHeroes = async function (database) {
-  const query = ``;
+  const query = `select name from super_heroes order by name asc`;
 
   return await database.all(query);
+
+
 }
 
 /**
@@ -65,7 +65,11 @@ export const getSuperHeroes = async function (database) {
  *   * See database schema above
  */
 export const getSuperHeroesAndBrands = async function (database, id) {
-  const query = ``;
+  const query = 
+  ` select super_heroes.name AS name, brands.name as brand
+    from super_heroes
+    left join brands ON super_heroes.brand_id = brands.id
+    order by super_heroes.id;`;
 
   return await database.all(query);
 }
