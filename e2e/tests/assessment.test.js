@@ -6,8 +6,6 @@
  * 3. Make any changes to assesment.test.js and index.html you want
  * 4. Challenge 1
  *    * Validate the bulleted list gets populated with links and dates.
- *    * Mock out the external network call so the E2E tests never actually hit GitHub's API directly.
- *    * Validates an error message is shown if the network call fails.
  * 5. Challenge 2
  *    * Validate the correct image shows up for:
  *      * Turtles + Turtles
@@ -16,7 +14,7 @@
  *    * Validate the correct data is sent to the backend stub on submit
  *    * Make a test where we set values for both people, but then click the "X" in the dropdowns to clear out each selection.
  *      * This should show no image, and no text below the table.
- *    * Don't worry about testing the network call failing, the backend doesn't work yet anyways :)
+ *   
  */
 
 import { test, expect } from '@playwright/test';

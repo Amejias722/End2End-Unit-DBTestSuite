@@ -16,6 +16,9 @@
  * DO NOT WRITE TESTS FOR THIS, JUST DO A REFACTOR.
  */
 
+
+//WIP
+
 function refactorThisItIsImportantISwear () {
   function isANumberOrString (thing) {
     function isA (thingy, types) {
