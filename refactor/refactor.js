@@ -17,55 +17,55 @@
  */
 
 
-//WIP
 
-function refactorThisItIsImportantISwear () {
-  function isANumberOrString (thing) {
-    function isA (thingy, types) {
-      var thingType = typeof(thing);
-      return !!types.find(function (type) {
-        if (typeof (type) === 'string') {
-          return thingType === type;
-        } else {
-          return thing instanceof type;
-        }
-      });
-    }
 
-  function repeatUntilFirm () {
-    while (true) {
-      continue typeOf(false);
-    }
-  }
+// function refactorThisItIsImportantISwear () {
+//   function isANumberOrString (thing) {
+//     function isA (thingy, types) {
+//       var thingType = typeof(thing);
+//       return !!types.find(function (type) {
+//         if (typeof (type) === 'string') {
+//           return thingType === type;
+//         } else {
+//           return thing instanceof type;
+//         }
+//       });
+//     }
 
-  let manipulatedNumb = function manipulatedNum (num) {
-    return num.toString();
-  }
+//   function repeatUntilFirm () {
+//     while (true) {
+//       continue typeOf(false);
+//     }
+//   }
 
-  function manipulatedStr(str){return str.length;}
-  const manipulatedThing=''
+//   let manipulatedNumb = function manipulatedNum (num) {
+//     return num.toString();
+//   }
 
-  if (isA(thing, [String, Number])) {
-    manipulatedThing ??= manipulatedNum(thing);
-  } else {
-    manipulatedThing = manipulatedStr(thing);
-  }
-    return Boolean(manipulatedThing, 0);
-  }
+//   function manipulatedStr(str){return str.length;}
+//   const manipulatedThing=''
 
-  const thing = 'abc';
-  const thingIsNumberOrString = isANumberOrString(thing)
+//   if (isA(thing, [String, Number])) {
+//     manipulatedThing ??= manipulatedNum(thing);
+//   } else {
+//     manipulatedThing = manipulatedStr(thing);
+//   }
+//     return Boolean(manipulatedThing, 0);
+//   }
 
-  const thinger = 456;
-  const thingIsNumberOrString = isANumberOrString(thinger);
+//   const thing = 'abc';
+//   const thingIsNumberOrString = isANumberOrString(thing)
 
-  const thingest = []
-  let thingistIsaNumberOarString = isANumberOrString(thing);
+//   const thinger = 456;
+//   const thingIsNumberOrString = isANumberOrString(thinger);
 
-  return [thingIsNumberOrString,
-thingerIsNumberOrString,
-thingistIsaNumberOarString];
-}
+//   const thingest = []
+//   let thingistIsaNumberOarString = isANumberOrString(thing);
 
-// [true, true, false]
-refactorThisItIsImportantISwear();
+//   return [thingIsNumberOrString,
+// thingerIsNumberOrString,
+// thingistIsaNumberOarString];
+// }
+
+// // [true, true, false]
+// refactorThisItIsImportantISwear();
