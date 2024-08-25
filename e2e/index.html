@@ -237,16 +237,6 @@
         },
         watch: {
           imageMap: function () {
-            /**
-             * THE DELAY HERE IS IMPORTANT!
-             * We told our investors that we can use AI to figure out
-             * the turtle/cowboy thing. But none of us know how to do AI,
-             * so we are just making it look like this takes a long time.
-             * Then next quarter we can lower the delay and talk about how
-             * hard it was to make the AI go faster. Look, I know this goes
-             * against everything in the turtle/cowboy/ethics handbook, but
-             * my hands are tied on this.
-             */
             this.thinking = true;
             // 0.5-2 second random delay
             const delay = (Math.random() * 1500) + 500;
