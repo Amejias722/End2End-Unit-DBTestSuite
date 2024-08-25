@@ -9,7 +9,7 @@
   * `backend` - Backend assessment ⛁
 
 #### Steps to Complete 
- If you do not already have Node.js and npm installed, we recommend using a Node Version Manager, like Volta:
+ If you do not already have Node.js and npm installed, I recommend using a Node Version Manager, like Volta:
    * [Volta](https://docs.volta.sh/guide/getting-started) - Linux/OSX/Windows
    * [nvm](https://github.com/creationix/nvm) - Linux/OSX
 Volta will automatically use the correct Node version. If you aren't using it, make sure you have Node.js 18+, with npm 8+, installed.
