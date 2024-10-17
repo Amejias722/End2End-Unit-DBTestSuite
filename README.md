@@ -4,7 +4,6 @@
 * This project is a mixture of different testing methods divided into the following sections:
 
   * `e2e` - End-to-End testing assessment (Playwright) 🎭
-  * `refactor` - Some messy/buggy JavaScript that needs cleaned up 🧹🧹
   * `unit` - Unit testing assessment (Vitest) ⚙️
   * `backend` - Backend assessment ⛁
 
